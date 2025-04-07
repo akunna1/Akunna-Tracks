@@ -1,103 +1,107 @@
-import Image from "next/image";
+import { FC } from "react";
 
-export default function Home() {
+const Home: FC = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white min-h-screen">
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center py-16 md:py-24 px-8 md:px-16 space-y-6">
+        <h1 className="text-5xl sm:text-6xl font-extrabold text-neon-green">
+          Welcome to Akunna Tracks
+        </h1>
+        <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
+          Track your calories, weight, and personal notes in one intuitive and modern app.
+        </p>
+        <button className="bg-gradient-to-r from-teal-400 to-cyan-500 text-white px-8 py-3 rounded-full text-lg font-semibold transform hover:scale-110 transition duration-300 ease-in-out">
+          Login
+        </button>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Core Features - Split layout */}
+      <section className="py-16 px-8 text-center">
+        <h2 className="text-3xl sm:text-4xl text-neon-blue font-extrabold">
+          💡 Core Features
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-8">
+          {/* Calorie Intake Tracker */}
+          <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all">
+            <h3 className="text-xl text-neon-pink font-semibold">📊 Calorie Intake Tracker</h3>
+            <p className="mt-4 text-gray-300">
+              Log your food intake, track meal types, calories, and time. Upload
+              food images for visual tracking!
+            </p>
+          </div>
+
+          {/* Weight Tracker */}
+          <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all">
+            <h3 className="text-xl text-neon-pink font-semibold">⚖️ Weight Tracker</h3>
+            <p className="mt-4 text-gray-300">
+              Monitor your weight progress over time, with optional notes and
+              beautiful line charts.
+            </p>
+          </div>
+
+          {/* Personal Notes Section */}
+          <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all">
+            <h3 className="text-xl text-neon-pink font-semibold">📝 Personal Notes</h3>
+            <p className="mt-4 text-gray-300">
+              Track your thoughts, workouts, and meals with free-form notes, and
+              use Markdown to format them.
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Stats Section - Split Layout */}
+      <section className="bg-gray-800 py-16 px-8 mt-16 rounded-lg shadow-xl">
+        <div className="flex flex-col lg:flex-row justify-between items-center space-y-10 lg:space-y-0">
+          {/* Left Section */}
+          <div className="text-center lg:text-left space-y-6 max-w-md">
+            <h2 className="text-3xl font-extrabold text-neon-green">
+              Track Your Progress with Ease
+            </h2>
+            <p className="text-lg text-gray-300">
+              Keep an eye on your daily progress with stunning graphs, trends, and
+              quick logs. Your journey is visualized for a better experience.
+            </p>
+            <button className="bg-gradient-to-r from-teal-400 to-cyan-500 text-white px-8 py-3 rounded-full text-lg font-semibold transform hover:scale-110 transition duration-300 ease-in-out">
+              Start Tracking
+            </button>
+          </div>
+
+          {/* Right Section (Image or Graph Illustration) */}
+          <div className="flex justify-center lg:justify-end w-full lg:w-auto">
+            {/* Placeholder for an image, chart, or illustration */}
+            <div className="w-full max-w-sm rounded-lg overflow-hidden bg-gray-700 shadow-lg">
+              {/* This could be an image or a chart component */}
+              <img
+                src="https://via.placeholder.com/300"
+                alt="Tracking Illustration"
+                className="object-cover w-full h-60"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call-to-Action Section */}
+      <section className="bg-gradient-to-r from-gray-700 via-gray-800 to-black py-12 px-8 text-center mt-16 rounded-lg">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-neon-pink">
+          Ready to Start Your Journey?
+        </h2>
+        <p className="mt-4 text-lg text-gray-300">
+          Log in now to begin tracking your goals and progress with Akunna Tracks!
+        </p>
+        <button className="bg-gradient-to-r from-teal-400 to-cyan-500 text-white px-8 py-3 rounded-full text-lg font-semibold transform hover:scale-110 transition duration-300 ease-in-out mt-6">
+          Login
+        </button>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 py-8 mt-16 text-center">
+        <p className="text-sm text-gray-400">© 2025 Akunna Tracks - All Rights Reserved</p>
       </footer>
     </div>
   );
-}
+};
+
+export default Home;
