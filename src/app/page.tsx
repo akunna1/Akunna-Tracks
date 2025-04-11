@@ -1,38 +1,68 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { v4 as uuid4 } from 'uuid'
+import {
+  LineChart, Line, XAxis, YAxis,
+  CartesianGrid, Tooltip, ResponsiveContainer
+} from 'recharts'
+import { db } from './lib/firebase'
+import {
+  collection, addDoc, query, orderBy,
+  deleteDoc, doc, onSnapshot
+} from 'firebase/firestore'
 
 export default function WeightTracker() {
   const [weight, setWeight] = useState('')
-  const [data, setData] = useState<{ id: string, date: string, kg: number }[]>([])
+  const [data, setData] = useState<{ id: string, dateOnly: string, fullDate: string, kg: number }[]>([])
 
-  // Load from localStorage when component mounts
   useEffect(() => {
-    const storedData = localStorage.getItem('weightData')
-    if (storedData) {
-      setData(JSON.parse(storedData))
-    }
+    const q = query(collection(db, 'weights'), orderBy('timestamp'))
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const fetchedData: { id: string, dateOnly: string, fullDate: string, kg: number }[] = []
+      querySnapshot.forEach(doc => {
+        const data = doc.data()
+        const timestamp = data.timestamp.toDate()
+
+        const dateOnly = timestamp.toLocaleDateString('en-US', {
+          timeZone: 'America/New_York'
+        })
+
+        const fullDate = timestamp.toLocaleString('en-US', {
+          timeZone: 'America/New_York',
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        }).replace(',', ',')
+
+        fetchedData.push({
+          id: doc.id,
+          dateOnly,
+          fullDate,
+          kg: data.kg,
+        })
+      })
+      setData(fetchedData)
+    })
+
+    return () => unsubscribe()
   }, [])
 
-  // Save to localStorage whenever data changes
-  useEffect(() => {
-    localStorage.setItem('weightData', JSON.stringify(data))
-  }, [data])
-
-  const addWeight = () => {
+  const addWeight = async () => {
     if (!weight) return
-    setData(prev => [...prev, {
-      id: uuid4(),
-      date: new Date().toLocaleDateString(),
-      kg: parseFloat(weight)
-    }])
+    const newWeight = {
+      kg: parseFloat(weight),
+      timestamp: new Date(),
+    }
+    await addDoc(collection(db, 'weights'), newWeight)
     setWeight('')
   }
 
-  const deleteEntry = (id: string) => {
-    setData(prev => prev.filter(entry => entry.id !== id))
+  const deleteEntry = async (id: string) => {
+    await deleteDoc(doc(db, 'weights', id))
   }
 
   return (
@@ -64,7 +94,7 @@ export default function WeightTracker() {
         <ResponsiveContainer width="100%" height={350}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="4 4" stroke="#4b5563"/>
-            <XAxis dataKey="date" stroke="#9ca3af" />
+            <XAxis dataKey="dateOnly" stroke="#9ca3af" />
             <YAxis domain={['auto', 'auto']} stroke="#9ca3af" />
             <Tooltip
               contentStyle={{
@@ -73,6 +103,7 @@ export default function WeightTracker() {
                 border: '1px solid #9ca3af',
                 color: '#fff'
               }}
+              labelFormatter={(value) => `Date: ${value}`}
               labelStyle={{ color: '#9ca3af' }}
               itemStyle={{ color: '#9ca3af' }}
             />
@@ -94,7 +125,7 @@ export default function WeightTracker() {
             className="flex justify-between items-center px-6 py-4 bg-gray-800 rounded-xl border border-gray-600 hover:border-[#004182] shadow-md hover:shadow-[#004182]/50 transition-all"
           >
             <span className="text-white font-medium">
-              {entry.date}: <span className="text-gray-400">{entry.kg} kg</span>
+              {entry.fullDate}: <span className="text-gray-400">{entry.kg} kg</span>
             </span>
             <button
               onClick={() => deleteEntry(entry.id)}
