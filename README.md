@@ -1,40 +1,70 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏋🏿 Akunna Tracks — My Daily Weight Loss Tracker
 
-## Getting Started
+## About 📊
 
-First, run the development server:
+**Akunna Tracks** is a simple, user-friendly web app I built to help me track my weight loss journey. It allows me to log my weight each day, visualize my progress using dynamic charts, and stay encouraged as I pursue better health and habits.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 **Live App:** [akunna-tracks.vercel.app](https://akunna-tracks.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Key Features ✨
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* 📝 **Daily Weight Logging:** I can easily record my weight every day to maintain an accurate history.
+* 📈 **Progress Charts:** The app generates responsive charts using Recharts so I can clearly see my trends and improvements over time.
+* 🔒 **Secure Data:** All entries are stored in Firebase Firestore so my data stays safe and accessible from anywhere.
+* ⚡ **Modern Tech Stack:** Built with Next.js, React, and TypeScript for performance and clean architecture.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack 🛠️
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Next.js** — A React framework for optimized rendering and routing
+* **React.js** — For building responsive, interactive components
+* **TypeScript** — For type safety and cleaner development
+* **Recharts** — To create detailed, animated data visualizations
+* **Firebase Firestore** — My backend database for storing user data securely
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Getting Started 🚀
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you'd like to run this project locally or contribute:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# Akunna-Tracks
->>>>>>> 9a66eb71de1481c7635905be5615cc712e7adb66
+1. **Clone the repo**
+
+   ```bash
+   git clone <repo-url>
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up Firebase**
+
+   * Head to [Firebase Console](https://console.firebase.google.com) and create a new project
+   * Set up Firestore (and authentication if needed)
+   * Add your config in `firebase/config.ts` or as environment variables in `.env.local`
+
+4. **Start the dev server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Visit in browser**
+
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## How I Use It 🏃‍♀️
+
+* I log in and input my weight every day.
+* I monitor my trends on the progress dashboard.
+* Seeing the chart helps keep me focused and motivated!
